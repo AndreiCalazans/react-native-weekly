@@ -1,5 +1,161 @@
 [
   {
+    "authorName": "Pieter Vanderwerff",
+    "authorEmail": "pieterv@meta.com",
+    "date": "Thu Jun 1 12:02:07 2023 -0700",
+    "title": "Upgrade hermes-* packages in xplat and arvr to version 0.12.0 (#37648)",
+    "hash": "d9b3339ef8df3624295ba6f3ca51757b4b4a003b",
+    "explanation": "Upgraded hermes-* packages to version 0.12.0",
+    "relevantSnippets": [
+      {
+        "file": "package.json",
+        "snippet": "    \"hermes-eslint\": \"0.12.0\","
+      },
+      {
+        "file": "yarn.lock",
+        "snippet": "hermes-eslint@0.12.0:"
+      },
+      {
+        "file": "yarn.lock",
+        "snippet": "hermes-estree@0.12.0:"
+      },
+      {
+        "file": "yarn.lock",
+        "snippet": "hermes-parser@0.12.0:"
+      }
+    ]
+  },
+  {
+    "authorName": "Samuel Susla",
+    "authorEmail": "samuelsusla@meta.com",
+    "date": "Thu Jun 1 11:45:57 2023 -0700",
+    "title": "Create separate pod for React-debug (#37657)",
+    "hash": "dc54334c59e8bcbee531ee032b540fe75a8392c3",
+    "explanation": "Make React-debug into its own pod to align BUCK and cocoapods.",
+    "relevantSnippets": [
+      {
+        "file": "packages/react-native/Libraries/AppDelegate/React-RCTAppDelegate.podspec",
+        "snippet": "s.dependency \"React-debug\""
+      },
+      {
+        "file": "packages/react-native/React/React-RCTFabric.podspec",
+        "snippet": "s.dependency \"React-debug\""
+      },
+      {
+        "file": "packages/react-native/ReactCommon/React-Fabric.podspec",
+        "snippet": "s.dependency \"React-debug\""
+      }
+    ]
+  },
+  {
+    "authorName": "Riccardo Cipolleschi",
+    "authorEmail": "cipolleschi@fb.com",
+    "date": "Thu Jun 1 04:53:03 2023 -0700",
+    "title": "Remove missing dependencies from React-Fabric (#37652)",
+    "hash": "b50874cad41f06519a263fa53d15f76c836fd167",
+    "explanation": "Remove unused dependencies from React-Fabric podspec to fix build issues.",
+    "relevantSnippets": [
+      {
+        "file": "packages/react-native/ReactCommon/React-Fabric.podspec",
+        "snippet": "@@ -51,9 +51,9 @@ Pod::Spec.new do |s|\n   s.dependency \"glog\"\n   s.dependency \"DoubleConversion\"\n   s.dependency \"React-Core\"\n-  s.dependency \"React-debug\"\n-  s.dependency \"React-utils\"\n-  s.dependency \"React-runtimescheduler\"\n+  # s.dependency \"React-debug\"\n+  # s.dependency \"React-utils\"\n+  # s.dependency \"React-runtimescheduler\"\n   s.dependency \"React-cxxreact\""
+      }
+    ]
+  },
+  {
+    "authorName": "Nicola Corti",
+    "authorEmail": "ncor@meta.com",
+    "date": "Thu Jun 1 03:24:45 2023 -0700",
+    "title": "Configure JDK Toolchain to 11 for all the 3rd party libraries. (#37575)",
+    "hash": "b66ab2c15498d1e236220cb6c94a5f3e807621dd",
+    "explanation": "",
+    "relevantSnippets": [{ "file": "", "snippet": "" }]
+  },
+  {
+    "authorName": "Sam Zhou",
+    "authorEmail": "samzhou19815@meta.com",
+    "date": "Thu Jun 1 00:19:14 2023 -0700",
+    "title": "Upgrade to Flow v0.207.0 (#37601)",
+    "hash": "daf6e53ae17a5d3724be9e223d7d8af7c6ced18c",
+    "explanation": "Upgrade Flow static type checker to version 0.207.0.",
+    "relevantSnippets": [
+      {
+        "file": ".flowconfig",
+        "snippet": "@@ -75,4 +75,4 @@ untyped-import\n untyped-type-import\n \n [version]\n-^0.206.0\n+^0.207.0"
+      },
+      {
+        "file": ".flowconfig.android",
+        "snippet": "@@ -75,4 +75,4 @@ untyped-import\n untyped-type-import\n \n [version]\n-^0.206.0\n+^0.207.0"
+      },
+      {
+        "file": "package.json",
+        "snippet": "@@ -78,7 +78,7 @@\n     \"eslint-plugin-react-native\": \"^4.0.0\",\n     \"eslint-plugin-redundant-undefined\": \"^0.4.0\",\n     \"eslint-plugin-relay\": \"^1.8.3\",\n-    \"flow-bin\": \"^0.206.0\",\n+    \"flow-bin\": \"^0.207.0\","
+      },
+      {
+        "file": "yarn.lock",
+        "snippet": "flow-bin@^0.207.0:\n  version \"0.207.0\"\n  resolved \"https://registry.yarnpkg.com/flow-bin/-/flow-bin-0.207.0.tgz#71c6a21214c57f3e36e03b32033dd0358452499b\"\n  integrity sha512-jAet+lhdrvpk4kjonZ6r/v09rkyaPQX+E5gio+HesEBvsOsCWfnuadBRQZihTM4+szjJPWEkITfrCurI/aCqEQ=="
+      }
+    ]
+  },
+  {
+    "authorName": "Nicola Corti",
+    "authorEmail": "ncor@meta.com",
+    "date": "Wed May 31 23:23:17 2023 -0700",
+    "title": "Enable mock-maker-inline for Android JVM tests (#37646)",
+    "hash": "ddb8aeadbb0a5f6856abd9c04eb730fb2bb13332",
+    "explanation": "Enable mock-maker-inline for Android JVM tests",
+    "relevantSnippets": [
+      {
+        "file": "packages/react-native/ReactAndroid/src/test/java/com/facebook/react/bridgeless/ReactHostDelegateTest.kt",
+        "snippet": "-import org.junit.Ignore\n+import org.mockito.Mockito\n@@ -31,7 +30,6 @@\n   * API  \n   */\n  @Test\n-  @Ignore\n  fun testDefaultReactHostDelegateCreation() {"
+      },
+      {
+        "file": "packages/react-native/ReactAndroid/src/test/java/com/facebook/react/modules/deviceinfo/DeviceInfoModuleTest.java",
+        "snippet": "@@ -126,7 +126,8 @@\n   }\n\n   private static void givenDisplayMetricsHolderContains(final WritableMap fakeDisplayMetrics) {\n-    when(DisplayMetricsHolder.getDisplayMetricsWritableMap(1.0)).thenReturn(fakeDisplayMetrics);\n+    when(DisplayMetricsHolder.getDisplayMetricsWritableMap(1.0))\n+        .thenAnswer(invocation -> fakeDisplayMetrics);"
+      },
+      {
+        "file": "packages/react-native/ReactAndroid/src/test/resources/mockito-extensions/org.mockito.plugins.MockMaker",
+        "snippet": "+mock-maker-inline"
+      }
+    ]
+  },
+  {
+    "authorName": "Ramanpreet Nara",
+    "authorEmail": "ramanpreet@meta.com",
+    "date": "Wed May 31 16:13:05 2023 -0700",
+    "title": "Interop: Create gating for the Bridge proxy",
+    "hash": "462c648b58a536cc9437d49b1f644e34d95230a1",
+    "explanation": "The changes add gating for the Bridge proxy in the TurboModule interop layer on iOS. The Bridge proxy simulates the Bridge API and delegates to Bridgeless abstractions when possible. This allows isolating issues to the Bridge proxy and stabilizing the TurboModule interop layer. The flag enabling this is temporary and will be removed once the Bridge proxy is enabled by default.",
+    "relevantSnippets": [
+      {
+        "file": "packages/react-native/React/Base/RCTBridge.h",
+        "snippet": "```diff\n+// Turn on TurboModule interop's Bridge proxy\n+RCT_EXTERN BOOL RCTTurboModuleInteropBridgeProxyEnabled(void);\n+RCT_EXTERN void R CTEnableTurboModuleInteropBridgeProxy(BOOL enabled);\n```"
+      },
+      {
+        "file": "packages/react-native/React/Base/RCTBridge.m",
+        "snippet": "```diff\n+static BOOL turboModuleInteropBridgeProxyEnabled = NO;\n+BOOL RCTTurboModuleInteropBridgeProxyEnabled(void)\n+{\n+  return turboMo duleInteropBridgeProxyEnabled;\n+}\n \n+void RCTEnableTurboModuleInteropBridgeProxy(BOOL enabled)\n+{\n+  turboModuleInteropBridgeProxyEnabled = enabled;\n+ }\n```"
+      }
+    ]
+  },
+  {
+    "authorName": "Ramanpreet Nara",
+    "authorEmail": "ramanpreet@meta.com",
+    "date": "Wed May 31 16:13:05 2023 -0700",
+    "title": "Export moduleIsInitialized from RCTModuleRegistry",
+    "hash": "197ed4369782365e57b7035987ed1a94d501e1f5",
+    "explanation": "Export moduleIsInitialized from RCTModuleRegistry to allow RCTBridgeProxy to implement the API.",
+    "relevantSnippets": [
+      {
+        "file": "packages/react-native/React/Base/RCTBridgeModule.h",
+        "snippet": "+ (BOOL)moduleIsInitialized:(Class)moduleClass;"
+      },
+      {
+        "file": "packages/react-native/React/Base/RCTModuleRegistry.m",
+        "snippet": "- (BOOL)moduleIsInitialized:(Class)moduleClass\n{\n  // Implementation...\n}"
+      }
+    ]
+  },
+
+  {
     "authorName": "Samuel Susla",
     "authorEmail": "samuelsusla@meta.com",
     "date": "Wed May 31 06:58:15 2023 -0700",
