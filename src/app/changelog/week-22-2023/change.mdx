@@ -1,0 +1,16 @@
+# Week 21 2023
+
+## Implement mount hooks in UIManager [#37460](https://github.com/facebook/react-native/pull/37460)
+
+The change by Rubén Norte \<rubennorte@meta.com\> implements mount hooks in UIManager which notify when a root shadow tree has been mounted.
+
+- [RCTScheduler.h](https://github.com/facebook/react-native/blob/32bd60f863f/packages/react-native/React/Fabric/RCTScheduler.h#L70-L72)
+The `reportMount:` method is added to `RCTScheduler` to report mounted surface IDs.
+
+- [RCTScheduler.mm](https://github.com/facebook/react-native/blob/32bd60f863f/packages/react-native/React/Fabric/RCTScheduler.mm#L135-L140) 
+The `reportMount:` method calls through to the C++ scheduler to report the mounted surface ID.
+
+- [RCTSurfacePresenter.mm](https://github.com/facebook/react-native/blob/32bd60f863f/packages/react-native/React/Fabric/RCTSurfacePresenter.mm#L283-L285)
+A check for the `react_fabric:enable_mount_hooks_ios` React Native config is added. If enabled, mount hooks will be used.
+
+The change is meant for internal React Native use, not external libraries. It will be used to implement IntersectionObserver.

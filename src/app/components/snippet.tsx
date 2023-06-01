@@ -1,6 +1,14 @@
 import { Caption } from "./caption";
 
-export const Snippet = ({ children, scroll = true, caption = null }) => (
+export const Snippet = ({
+  children,
+  scroll = true,
+  caption = undefined,
+}: {
+  caption?: string;
+  children?: React.ReactNode;
+  scroll?: boolean;
+}) => (
   <div className="my-6">
     <pre
       className={`

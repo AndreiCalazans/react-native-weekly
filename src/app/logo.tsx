@@ -7,7 +7,7 @@ export function Logo() {
   return (
     <span className="text-md md:text-lg whitespace-nowrap font-bold">
       {pathname === "/" ? (
-        <span className="cursor-default pr-2">React Native Weekly</span>
+        <span className="cursor-default pr-2"></span>
       ) : (
         <Link
           href="/"
